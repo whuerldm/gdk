@@ -1,0 +1,62 @@
+{
+  "name": "@gkd-kit/subscription-template",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "postinstall": "simple-git-hooks",
+    "format": "prettier --cache --write --ignore-unknown .",
+    "lint": "eslint --cache --fix .",
+    "check": "tsc --noEmit && tsx ./scripts/check.ts",
+    "build": "tsc --noEmit && tsx ./scripts/build.ts"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged",
+    "pre-push": "pnpm run check"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,ts,jsx,tsx}": [
+      "eslint --cache --fix"
+    ],
+    "*.json": [
+      "prettier --cache --write"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "./dist"
+  ],
+  "dependencies": {
+    "@eslint/js": "10.0.1",
+    "@gkd-kit/api": "0.9.3",
+    "@gkd-kit/define": "0.0.1",
+    "@gkd-kit/tools": "0.8.0",
+    "@types/node": "26.1.2",
+    "eslint": "10.8.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.6",
+    "eslint-plugin-unused-imports": "4.4.1",
+    "jiti": "2.7.0",
+    "json5": "2.2.3",
+    "lint-staged": "17.3.0",
+    "prettier": "3.9.6",
+    "simple-git-hooks": "2.13.1",
+    "tsx": "4.23.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.66.0"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "26",
+      "onFail": "warn"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.20.0",
+      "onFail": "warn"
+    }
+  }
+}
